@@ -21,9 +21,7 @@ type cacher struct {
 
 func NewCacher() Cacher {
 	repository := NewRepository()
-	cacher := &cacher{repository: repository}
-
-	return cacher
+	return &cacher{repository: repository}
 }
 
 func (c cacher) Garbageman(m *sync.Mutex) {
@@ -48,10 +46,6 @@ func (c cacher) Garbageman(m *sync.Mutex) {
 		m.Unlock()
 	}
 
-}
-
-func (c cacher) Done() {
-	c.done <- true
 }
 
 func (c cacher) List() map[string]*Cache {
